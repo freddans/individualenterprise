@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        /*odd rows*/
+        tr:nth-child(odd) {
+            background-color: blanchedalmond;
+        }
+        tr:nth-child(odd):hover td {
+            background-color: cornsilk;
+        }
+        /*even rows*/
+        tr:nth-child(even) {
+            background-color: bisque;
+        }
+        tr:nth-child(even):hover td {
+            background-color: cornsilk;
+        }
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .wholetable {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        .allheadersdiv {
+            background-color: #f0f0f0;
+        }
+
+        .headclass {
+            background-color: #ffa500;
+            border: 1px solid #ffa500;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .headclass:hover {
+            background-color: #ffcc00;
+            cursor: pointer;
+        }
+
+        .bottominfo td {
+            padding: 10px;
+            border-bottom: 1px solid #000; /* Black border */
+            text-align: left;
+        }
+
+        .bottominfo td:last-child {
+            border-bottom: none;
+        }
+
+        .bottominfo tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        button {
+            background-color: lightcoral;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: crimson;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="wholetable">
+    <table align="center">
+
+            <thead class="allheadersdiv">
+            <tr>
+                <th class="headclass">ID</th>
+                <th class="headclass">Name</th>
+                <th class="headclass">Surname</th>
+                <th class="headclass">Street</th>
+                <th class="headclass">Postal Code</th>
+                <th class="headclass">City</th>
+                <th class="headclass">Email</th>
+                <th class="headclass">Phone</th>
+                <th class="headclass">Date of birth</th>
+                <th class="headclass">Delete</th>
+            </tr>
+            </thead>
+
+
+        <tbody>
+        <tr th:each="member : ${members}">
+            <td th:text="${member.getId()}"></td>
+            <td th:text="${member.getFirstName()}"></td>
+            <td th:text="${member.getLastName()}"></td>
+            <td th:text="${member.getAddress().getStreet()}"></td>
+            <td th:text="${member.getAddress().getPostalCode()}"></td>
+            <td th:text="${member.getAddress().getCity()}"></td>
+            <td th:text="${member.geteMail()}"></td>
+            <td th:text="${member.getPhone()}"></td>
+            <td th:text="${member.getDateOfBirth()}"></td>
+            <td>
+                <form th:action="@{'/admin/deletemember/' + ${member.id}}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
