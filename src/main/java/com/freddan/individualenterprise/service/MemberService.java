@@ -80,11 +80,11 @@ public class MemberService {
         return memberRepo.save(member);
     }
 
-    public ResponseEntity<String> deleteMember(int id) {
+    public String deleteMember(int id) {
         Member memberToDelete = getMemberById(id);
         if (memberToDelete != null) {
             memberRepo.delete(memberToDelete);
-            return ResponseEntity.ok().body("Member Successfully Deleted");
+            return "redirect:/";
         } else {
             throw new ResourceNotFoundException("Member", "id", id);
         }

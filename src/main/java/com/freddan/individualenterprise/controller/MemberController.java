@@ -47,11 +47,11 @@ public class MemberController {
     }
 
     @PostMapping("/admin/deletemember/{id}")
-    public ResponseEntity<String> deleteMemberById(@PathVariable int id) {
+    public String deleteMemberById(@PathVariable int id) {
         try {
             return memberService.deleteMember(id);
         } catch (ResourceNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Member not found");
+            return "Member not found";
         }
     }
 
