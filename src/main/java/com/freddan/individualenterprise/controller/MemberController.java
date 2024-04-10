@@ -57,7 +57,7 @@ public class MemberController {
 
 
     // Website stuff
-    @GetMapping("/")
+    @GetMapping("/admin/deletemember")
     public String getWebSiteWithMembers(Model model) {
         List<Member> membersList = memberService.getAllMembers();
         model.addAttribute("members", membersList);
